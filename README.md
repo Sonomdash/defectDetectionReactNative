@@ -3,12 +3,19 @@
 [Camera ](https://www.npmjs.com/package/react-native-camera)
 npm i react-native-camera
 
-react-native-android-image-cropper
-(https://www.npmjs.com/package/react-native-android-image-cropper)
-
 [Image picker suulgah](https://www.npmjs.com/package/react-native-image-picker)
 
 npm i react-native-image-picker
+
+npm i react-native-android-image-cropper
+
+(https://www.npmjs.com/package/react-native-android-image-cropper)
+
+npm i react-native-image-crop-picker
+
+https://www.npmjs.com/package/react-native-image-crop-picker
+
+
 
 
 reactNavigation
