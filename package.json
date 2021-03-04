@@ -1,0 +1,48 @@
+{
+  "name": "defectDetection",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.9.3",
+    "@react-navigation/stack": "^5.14.3",
+    "geolib": "^3.3.1",
+    "link": "^0.1.5",
+    "react": "16.13.1",
+    "react-native": "^0.63.4",
+    "react-native-android-image-cropper": "^0.2.4",
+    "react-native-camera": "^3.42.0",
+    "react-native-camera-kit": "^10.0.0",
+    "react-native-device-angles": "^0.1.1",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-image-crop-picker": "^0.36.0",
+    "react-native-image-picker": "^3.1.4",
+    "react-native-reanimated": "^1.13.2",
+    "react-native-rear-camera-characteristics-display-metrics": "^1.0.6",
+    "react-native-ruler": "^0.1.0",
+    "react-native-safe-area-context": "^3.1.9",
+    "react-native-screens": "^2.18.1",
+    "react-navigation": "^4.4.4",
+    "react-navigation-stack": "^2.10.4"
+  },
+  "devDependencies": {
+    "@babel/core": "7.12.10",
+    "@babel/runtime": "7.12.5",
+    "@react-native-community/eslint-config": "1.1.0",
+    "babel-jest": "25.5.1",
+    "eslint": "6.8.0",
+    "jest": "25.5.4",
+    "metro-react-native-babel-preset": "0.59.0",
+    "react-test-renderer": "16.13.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
