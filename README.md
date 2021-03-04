@@ -1,6 +1,8 @@
 # defectDetectionReactNative
 
-[Camera ](https://www.npmjs.com/package/react-native-camera)
+Camera тохиргоо хийх
+
+(https://www.npmjs.com/package/react-native-camera)
 npm i react-native-camera
 
 [Image picker suulgah](https://www.npmjs.com/package/react-native-image-picker)
