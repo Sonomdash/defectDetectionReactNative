@@ -1,4 +1,5 @@
-import React, {useState, Component} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import {
   StyleSheet,
   ScrollView,
@@ -8,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Images from 'react-native-image-crop-picker';
+import {set} from 'react-native-reanimated';
 const SENSORHEIGHT = 51.71118; //mm
 const SENSORWIDTH = 29.28864; //mm
 const SensorHeight_Pixel = 1280;
@@ -15,13 +17,15 @@ const SensorWidth_Pixel = 720;
 
 const FOCALLENGTH = 40.09; //mm
 const DISTANCE = 1000; //MM
-
+const urls = 'http://192.168.1.62:5000/getImage';
 const Measure = ({route}) => {
+  const [getApi, setApi] = useState(image);
   const [state, setState] = useState(image);
   const [defectWidth, setDefectWidth] = useState('');
   const [defectHeight, setDefectHeight] = useState('');
-  const {image, imageHeight, imageWidth} = route.params;
+  const {image, imageHeight, imageWidth, imageJsonH, imageJsonW} = route.params;
   //console.log('measure', image, imageHeight, imageWidth);
+  console.log('img', imageJsonH, imageJsonW);
 
   const real_object_heigth = () => {
     const Object_height = (SENSORHEIGHT * imageHeight) / SensorHeight_Pixel;
@@ -33,7 +37,15 @@ const Measure = ({route}) => {
     const real = (DISTANCE * Object_width) / FOCALLENGTH;
     return real / 1000;
   };
+  // useEffect(() => {
+  //   fetch(urls,{
 
+  //   })
+  //     .then((response) => response.json())
+  //     .then((json) => setData(json.movies))
+  //     .catch((error) => console.error(error))
+  //     .finally(() => setLoading(false));
+  // }, []);
   const cropImage = () => {
     Images.openCropper({
       path: image,
@@ -48,12 +60,12 @@ const Measure = ({route}) => {
     });
   };
   const real_defect_height = () => {
-    const height = (SENSORHEIGHT * defectHeight) / SensorHeight_Pixel;
+    const height = (SENSORHEIGHT * imageJsonH) / SensorHeight_Pixel;
     const real = (DISTANCE * height) / FOCALLENGTH;
     return real / 1000;
   };
   const real_defect_width = () => {
-    const height = (SENSORWIDTH * defectWidth) / SensorWidth_Pixel;
+    const height = (SENSORWIDTH * imageJsonW) / SensorWidth_Pixel;
     const real = (DISTANCE * height) / FOCALLENGTH;
     return real / 1000;
   };
@@ -61,6 +73,8 @@ const Measure = ({route}) => {
   return (
     <ScrollView>
       <View>
+        <Text style={styles.text}> Image</Text>
+        {/* <Image source={{uri: getApi}} style={styles.images} /> */}
         <Text style={styles.text}>Orginal Image</Text>
         <Image source={{uri: image}} style={styles.images} />
         <Text style={styles.text}>
@@ -76,7 +90,7 @@ const Measure = ({route}) => {
       </View>
       <View style={styles.container}>
         <TouchableOpacity style={styles.btn} onPress={cropImage}>
-          <Text style={{color: 'white'}}>Sew salgah</Text>
+          <Text style={{color: 'white'}}>Cэв салгах</Text>
         </TouchableOpacity>
         {/* <TouchableOpacity style={styles.btn}>
           <Text style={{color: 'white'}}>Sew salgah</Text>
@@ -98,8 +112,8 @@ const Measure = ({route}) => {
 export default Measure;
 const styles = StyleSheet.create({
   images: {
-    width: 150,
-    height: 150,
+    width: 300,
+    height: 300,
     marginHorizontal: 20,
     marginVertical: 20,
   },

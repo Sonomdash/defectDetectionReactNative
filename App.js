@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as ImagePicker from 'react-native-image-picker';
 import Images from 'react-native-image-crop-picker';
 import Measure from './src/MeasureSize';
@@ -27,6 +27,8 @@ import {
   createStackNavigator,
   createAppContainer,
 } from '@react-navigation/stack';
+import {cos} from 'react-native-reanimated';
+const urls = 'http://192.168.1.62:5000/upload';
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -40,6 +42,8 @@ class HomeScreen extends React.Component {
       fileHeight: '',
       fileWidth: '',
       fileUri: '',
+      imageJsonHeight: '',
+      imageJsonWidth: '',
     };
   }
 
@@ -63,8 +67,31 @@ class HomeScreen extends React.Component {
       } else {
         const source = {uri: response.uri};
         console.log('response', JSON.stringify(response));
-        console.log('response.data', response.height);
+        console.log('response.data', response);
         console.log('response.uri', response.uri);
+        const data = new FormData();
+        data.append('file', {
+          uri: response.uri,
+          type: 'image/jpg',
+          name: 'photo.jpg',
+        });
+        fetch(urls, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+          body: data,
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
+            this.setState({
+              imageJsonHeight: response.imageHeight,
+              imageJsonWidth: response.imageWidth,
+            });
+          })
+          .catch((error) => console.error(error));
         this.setState({
           filePath: response,
           fileHeight: response.height,
@@ -104,6 +131,8 @@ class HomeScreen extends React.Component {
                     image: this.state.fileUri,
                     imageWidth: this.state.fileWidth,
                     imageHeight: this.state.fileHeight,
+                    imageJsonH: this.state.imageJsonHeight,
+                    imageJsonW: this.state.imageJsonWidth,
                   })
                 }
                 style={styles.btnSection}>
