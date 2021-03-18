@@ -89,9 +89,9 @@ const Measure = ({route}) => {
         </Text>
       </View>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.btn} onPress={cropImage}>
+        {/* <TouchableOpacity style={styles.btn} onPress={cropImage}>
           <Text style={{color: 'white'}}>Cэв салгах</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         {/* <TouchableOpacity style={styles.btn}>
           <Text style={{color: 'white'}}>Sew salgah</Text>
         </TouchableOpacity> */}

@@ -72,13 +72,13 @@ class HomeScreen extends React.Component {
         const data = new FormData();
         data.append('file', {
           uri: response.uri,
-          type: 'image/jpg',
+          type: 'image/jpeg',
           name: 'photo.jpg',
         });
         fetch(urls, {
           method: 'POST',
           headers: {
-            Accept: 'application/json',
+            // Accept: 'application/json',
             'Content-Type': 'multipart/form-data',
           },
           body: data,
@@ -136,7 +136,7 @@ class HomeScreen extends React.Component {
                   })
                 }
                 style={styles.btnSection}>
-                <Text style={styles.btnText}>Cropped</Text>
+                <Text style={styles.btnText}>Defect Detection</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={this.launchCamera}
